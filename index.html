@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      padding-top: 50px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 560px;
+      justify-content: space-between;
+    }
+    .blocki {
+      width: 140px;
+      border: 2px solid;
+      border-radius: 6px;
+      display: flex;
+      padding: 10px;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-bottom: 20px;
+      transition: 1s;
+    }
+    .blocki:hover {
+      box-shadow: 0px 5px 10px 1px black;
+      transform: scale(1.1);
+      cursor: pointer;
+      transition: 0.5s;
+    }
+    .blocki[block-color="1"],
+    .blocki[block-color="2"],
+    .blocki[block-color="3"] {
+      color: rgb(75, 143, 216);
+      background-color: rgb(232, 239, 249);
+    }
+    .blocki[block-color="4"],
+    .blocki[block-color="5"],
+    .blocki[block-color="6"] {
+      color: goldenrod;
+      background-color: rgb(250, 250, 199);
+    }
+    .blocki[block-color="7"],
+    .blocki[block-color="8"],
+    .blocki[block-color="9"] {
+      color: rgb(208, 70, 93);
+      background-color: rgb(251, 224, 228);
+    }
+    .blocki img[block-color="6"] {
+      transform: rotate(150deg);
+      display: flex;
+    }
+  </style>
+  <body>
+    <script>
+      let data = [
+        {
+          title: "Boat",
+          img: "12.png",
+          des: "90 Minutes",
+        },
+        {
+          title: "Morning",
+          img: "13.png",
+          des: "Coffee",
+        },
+        {
+          title: "Bike",
+          img: "14.png",
+          des: "13.1 Miles",
+        },
+        {
+          title: "7:25 AM",
+          img: "15.png",
+          des: "Boston",
+        },
+        {
+          title: "Tranlate",
+          img: "16.png",
+          des: "Spanish",
+        },
+        {
+          title: "8:15 PM",
+          img: "15.png",
+          des: "Madrid",
+        },
+        {
+          title: "Afternoon",
+          img: "18.png",
+          des: "Gym",
+        },
+        {
+          title: "Night",
+          img: "20.png",
+          des: "Hot Tub",
+        },
+        {
+          title: "Drive",
+          img: "19.png",
+          des: "48 Miles",
+        },
+      ];
+
+      let container = document.createElement("div");
+      container.classList.add("container");
+
+      const renderBlock = () => {
+        let fragment = new DocumentFragment();
+
+        data.map((el, id) => {
+          let block = document.createElement("div");
+          block.classList.add("blocki");
+          block.setAttribute("block-color", id + 1);
+
+          block.innerHTML = `
+            <div >${el.title}</div>
+            <img width=50px src="${el.img}"/>
+            <div >${el.des}</div>
+            <hr/>`;
+
+          fragment.append(block);
+        });
+        return fragment;
+      };
+
+      container.append(renderBlock());
+      document.body.append(container);
+    </script>
+  </body>
+</html>
